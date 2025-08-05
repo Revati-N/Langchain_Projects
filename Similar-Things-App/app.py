@@ -16,7 +16,7 @@ load_dotenv()
 embeddings = OllamaEmbeddings(model="nomic-embed-text")  # or mxbai-embed-large, all-minilm, etc.
 
 # Load data
-loader = CSVLoader(file_path='myData.csv', csv_args={
+loader = CSVLoader(file_path='data.csv', csv_args={
     'delimiter': ',',
     'quotechar': '"',
     'fieldnames': ['Words']

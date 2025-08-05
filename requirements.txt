@@ -1,4 +1,6 @@
 streamlit
-os
 ollama
 langchain
+langchain-community
+faiss-cpu
+langchain-ollama
