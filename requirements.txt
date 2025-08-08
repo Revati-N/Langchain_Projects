@@ -5,3 +5,5 @@ langchain-community
 faiss-cpu
 langchain-ollama
 streamlit-chat
+pymupdf 
+python-docx
