@@ -1,5 +1,3 @@
-You're absolutely right! Since you mentioned you deployed it on Streamlit, let me update that README with the correct information:
-
 # 📊 CSV Data Analyzer with LangChain & Ollama
 
 An intelligent CSV data analysis tool that lets you explore and analyze your data using natural language queries. Built with LangChain, Ollama (Llama2), and Streamlit for a seamless data analysis experience.
