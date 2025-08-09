@@ -140,7 +140,7 @@ def main():
     # Main content area
     if uploaded_file is not None:
         # Create tabs for different functionalities
-        tab1, tab2, tab3, tab4 = st.tabs(["🔍 Data Overview", "💬 Natural Language Query", "📈 Visualizations", "📋 Data Summary"])
+        tab1, tab2, tab3 = st.tabs(["🔍 Data Overview", "📈 Visualizations", "📋 Data Summary"])
         
         with tab1:
             st.header("Data Overview")
@@ -161,50 +161,6 @@ def main():
             st.dataframe(col_info)
         
         with tab2:
-            st.header("Natural Language Query")
-            st.markdown("Ask questions about your data in natural language!")
-            
-            # Create agent
-            agent = create_agent(df, llm)
-            
-            if agent:
-                # Example queries
-                st.subheader("Example Queries")
-                examples = [
-                    "What are the column names in this dataset?",
-                    "Show me basic statistics for numerical columns",
-                    "What is the shape of the dataset?",
-                    "Are there any missing values?",
-                    "Show me the first 5 rows",
-                    "What is the correlation between numerical columns?",
-                    "Find outliers in the numerical columns"
-                ]
-                
-                selected_example = st.selectbox("Select an example query:", [""] + examples)
-                
-                # Query input
-                if selected_example:
-                    query = st.text_area("Your Query:", value=selected_example, height=100)
-                else:
-                    query = st.text_area("Your Query:", placeholder="Enter your question about the data...", height=100)
-                
-                if st.button("Analyze", type="primary"):
-                    if query:
-                        with st.spinner("Analyzing your query..."):
-                            try:
-                                response = agent.run(query)
-                                st.subheader("Analysis Result:")
-                                st.write(response)
-                                
-                            except Exception as e:
-                                st.error(f"Error processing query: {str(e)}")
-                                st.info("Try rephrasing your question or use a simpler query.")
-                    else:
-                        st.warning("Please enter a query.")
-            else:
-                st.error("Could not create analysis agent. Please check your Ollama setup.")
-        
-        with tab3:
             st.header("Data Visualizations")
             
             # Visualization controls
@@ -238,7 +194,7 @@ def main():
                 else:
                     st.warning("Could not generate chart. Please check your column selections and data types.")
         
-        with tab4:
+        with tab3:
             st.header("Detailed Data Summary")
             
             # Generate comprehensive summary
