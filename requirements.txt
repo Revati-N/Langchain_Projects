@@ -7,3 +7,10 @@ langchain-ollama
 streamlit-chat
 pymupdf 
 python-docx
+langchain-experimental
+matplotlib
+numpy
+pandas
+seaborn
+scikit-learn
+plotly
