@@ -15,3 +15,4 @@ seaborn
 scikit-learn
 plotly
 requests
+pypdf
