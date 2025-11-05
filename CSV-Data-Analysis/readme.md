@@ -2,7 +2,6 @@
 
 An intelligent CSV data analysis tool that lets you explore and analyze your data using natural language queries. Built with LangChain, Ollama (Llama2), and Streamlit for a seamless data analysis experience.
 
-🌟 **[Try the Live App](https://analyticsv.streamlit.app/)** 
 
 
 ## ✨ Features

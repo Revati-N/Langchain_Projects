@@ -1,10 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-# FIXED IMPORTS
-from langchain_ollama import OllamaLLM  # Correct import
-from langchain_experimental.agents import create_pandas_dataframe_agent
-from langchain.agents.agent_types import AgentType
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
@@ -18,39 +14,6 @@ st.set_page_config(
     page_icon="📊",
     layout="wide"
 )
-
-# Initialize Ollama LLM (SINGLE DEFINITION)
-@st.cache_resource
-def initialize_llm():
-    """Initialize Ollama Llama2 model"""
-    try:
-        llm = OllamaLLM(  # Updated class name
-            model="llama2",
-            temperature=0.1,
-            num_predict=512
-        )
-        return llm
-    except Exception as e:
-        st.error(f"Error initializing Ollama: {str(e)}")
-        st.info("Make sure Ollama is installed and Llama2 model is available")
-        return None
-
-# Function to create pandas agent
-def create_agent(df, llm):
-    """Create pandas dataframe agent with LangChain"""
-    try:
-        agent = create_pandas_dataframe_agent(
-            llm=llm,
-            df=df,
-            verbose=True,
-            agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-            handle_parsing_errors=True,
-            allow_dangerous_code=True  # Required for pandas operations
-        )
-        return agent
-    except Exception as e:
-        st.error(f"Error creating agent: {str(e)}")
-        return None
 
 # Function to generate data summary
 def generate_summary(df):
@@ -103,12 +66,6 @@ def create_visualization(df, chart_type, x_col=None, y_col=None):
 def main():
     st.title("📊 CSV Data Analyzer with LangChain & Ollama")
     st.markdown("Upload a CSV file and analyze it using natural language queries powered by Llama2")
-    
-    # Initialize LLM
-    llm = initialize_llm()
-    
-    if llm is None:
-        st.stop()
     
     # Sidebar for file upload and settings
     with st.sidebar:
@@ -257,14 +214,6 @@ def main():
         2. Upload a CSV file using the sidebar
         3. Explore your data using the different tabs
         
-        ### Prerequisites:
-        ```
-        # Install Ollama
-        curl -fsSL https://ollama.com/install.sh | sh
-        
-        # Pull Llama2 model
-        ollama pull llama2
-        ```
         """)
 
 if __name__ == "__main__":
